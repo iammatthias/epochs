@@ -1,0 +1,33 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "epochs",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-07-01",
+
+  "observability": {
+    "enabled": true
+  },
+
+  "vars": {
+    // Comma-separated JSON-RPC endpoints, tried in order. Empty uses the
+    // built-in public defaults, which are rate-limited — point this at your
+    // own provider for anything beyond casual traffic.
+    "EPOCHS_RPC_URL": "",
+
+    // This deployment's canonical address, used for og:url, rel=canonical and
+    // the sitemap. Empty derives it from the request, which is right for
+    // workers.dev and preview URLs; set it once you have a custom domain so
+    // every deployment agrees on one canonical.
+    "EPOCHS_PUBLIC_URL": "",
+
+    // Base URL for the licensed New Spirit / Söhne Mono woff2 files. Empty
+    // omits the @font-face rules entirely and the page falls back to a system
+    // serif and mono. See README.md — the fonts are not redistributed here.
+    "EPOCHS_FONTS_BASE": ""
+  }
+
+  // No bindings. Epoch values are a pure function of block height, so the only
+  // live input is one number from an RPC endpoint — there is nothing to
+  // persist. A warm isolate memoises the reading for one block time; a cold one
+  // costs a single round trip.
+}

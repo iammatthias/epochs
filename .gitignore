@@ -1,0 +1,14 @@
+node_modules/
+dist/
+
+# Wrangler's local state and the generated env types.
+.wrangler/
+worker-configuration.d.ts
+
+# Licensed fonts, if you drop them in locally. New Spirit and Söhne Mono are
+# not redistributable — see the note in README.md.
+public/fonts/
+
+.DS_Store
+*.log
+.dev.vars
